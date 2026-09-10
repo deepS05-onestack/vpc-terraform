@@ -1,0 +1,46 @@
+name: Terraform deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    env:
+      TF_CLOUD_HOSTNAME: app.terraform.io
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.2
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::285714067604:role/terraform
+          aws-region: ap-south-1
+
+      - name: Terraform Init
+        working-directory: onestack-vpc
+        run: terraform init
+
+      - name: Terraform Plan
+        working-directory: onestack-vpc
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        working-directory: onestack-vpc
+        run: terraform apply -auto-approve tfplan
