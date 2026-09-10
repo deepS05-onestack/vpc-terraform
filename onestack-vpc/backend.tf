@@ -6,7 +6,7 @@ terraform {
     organization = "onestack"
 
     workspaces {
-      name = "onestack-vpc"
+      name = "vpc-terraform"
     }
   }
 }
