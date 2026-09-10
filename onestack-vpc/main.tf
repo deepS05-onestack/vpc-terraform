@@ -17,7 +17,7 @@ module "vpc_a" {
 
 module "vpc_b" {
   source  = "app.terraform.io/onestack/aws_vpc/aws"
-  version = "1.0.1"
+  version = "1.0.3"
 
   vpc_name = var.vpc_b_name
 
