@@ -56,6 +56,3 @@ jobs:
         working-directory: onestack-vpc
         run: terraform plan
 
-      - name: Terraform Apply
-        working-directory: onestack-vpc
-        run: terraform apply -auto-approve
