@@ -1,6 +1,6 @@
 variable "region" {
   description = "AWS region to create resources in"
-  type        = string
+  type        = ap-south-1a
 }
 
 variable "tags" {

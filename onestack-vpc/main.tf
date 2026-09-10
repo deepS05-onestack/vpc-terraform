@@ -2,7 +2,7 @@ module "vpc_a" {
   source  = "app.terraform.io/onestack/aws_vpc/aws"
   version = "1.0.1"
 
-  name = var.vpc_a_name
+  vpc_name = var.vpc_a_name
 
   vpc_cidr = var.vpc_a_vpc_cidr
 
@@ -12,14 +12,14 @@ module "vpc_a" {
   db_subnet_cidr      = var.vpc_a_db_subnet_cidr
 
   region = var.region
-  tags   = var.tags
+  tags   = merge(var.tags, { Name = var.vpc_a_name })
 }
 
 module "vpc_b" {
   source  = "app.terraform.io/onestack/aws_vpc/aws"
   version = "1.0.1"
 
-  name = var.vpc_b_name
+  vpc_name = var.vpc_b_name
 
   vpc_cidr = var.vpc_b_vpc_cidr
 
@@ -29,5 +29,5 @@ module "vpc_b" {
   db_subnet_cidr      = var.vpc_b_db_subnet_cidr
 
   region = var.region
-  tags   = var.tags
+  tags   = merge(var.tags, { Name = var.vpc_b_name })
 }
