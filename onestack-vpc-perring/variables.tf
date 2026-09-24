@@ -1,10 +1,12 @@
 variable "requester_vpc_id" {
   type        = string
+  default     = "vpc-0c324738cca227b2a"
   description = "The ID of the requester VPC."
 }
 
 variable "accepter_vpc_id" {
   type        = string
+  default     = "vpc-09d328826e6394a99"
   description = "The ID of the accepter VPC."
 }
 

@@ -1,5 +1,5 @@
 data "aws_vpc" "requester" {
-  id = "vpc-0c324738cca227b2a"
+  id = var.requester_vpc_id
 }
 
 data "aws_route_tables" "requester" {
@@ -7,7 +7,7 @@ data "aws_route_tables" "requester" {
 }
 
 data "aws_vpc" "accepter" {
-  id = "vpc-09d328826e6394a99"
+  id = var.accepter_vpc_id
 }
 
 data "aws_route_tables" "accepter" {
