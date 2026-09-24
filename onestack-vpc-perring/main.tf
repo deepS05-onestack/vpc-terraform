@@ -15,7 +15,7 @@ data "aws_route_tables" "accepter" {
 }
 
 module "vpc_peering" {
-  source  = "app.terraform.io/onestack/vpc-peering/aws"
+  source  = "app.terraform.io/onestack/aws_vpc_peering/aws"
   version = "1.0.0"
 
   requester_vpc_id          = data.aws_vpc.requester.id
